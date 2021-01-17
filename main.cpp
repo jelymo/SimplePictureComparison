@@ -15,7 +15,6 @@ int main(int argv, char* argc[])
 	{
 		std::cout << "First param is 1st Image location relative to the executable." << std::endl;
 		std::cout << "Second param is 2nd Image location relative to the executable." << std::endl;
-		std::cin;
 		return 0;
 	}
 
@@ -29,7 +28,6 @@ int main(int argv, char* argc[])
 	if (image1data == nullptr)
 	{
 		std::cout << "Error loading Image 1." << std::endl;
-		std::cin;
 		return 0;
 	}
 
@@ -43,14 +41,12 @@ int main(int argv, char* argc[])
 	if (image2data == nullptr)
 	{
 		std::cout << "Error loading Image 2." << std::endl;
-		std::cin;
 		return 0;
 	}
 
 	if (image1size != image2size)
 	{
 		std::cout << "The two images has different sizes." << std::endl;
-		std::cin;
 		return 0;
 	}
 
@@ -72,4 +68,6 @@ int main(int argv, char* argc[])
 	return 0;
 }
 
+
+//threading
 //unsigned char* reduceResolution()
