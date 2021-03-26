@@ -50,21 +50,39 @@ int main(int argv, char* argc[])
 		return 0;
 	}
 
+	int percentage;
+	int decimilarPixelCount = 0;
+
 	for (unsigned char  *image1pixel = image1data, *image2pixel = image2data; 
 		image1pixel != image1data+image1size; 
 		image1pixel+=image1channel, image2pixel+=image1channel)
 	{
+		bool isDifferent = false;
 		for (int channel = 0; channel < image1channel; channel++)
 		{
 			if (*(image1pixel + channel) != *(image2pixel + channel))
 			{
-				std::cout << "They two image are not equal." << std::endl;
-				return 0;
+				isDifferent = true;
+				break;
 			}
+		}
+		if(isDifferent)
+		{
+			decimilarPixelCount++;//TODO this is wrong since it its not pixel but channel
 		}
 	}
 
-	std::cout << "They two image are equal." << std::endl;
+	decimilarPixelCount = image1size - decimilarPixelCount;
+	percentage = (int)(((float)decimilarPixelCount/(float)image1size) * 100);
+
+	if(percentage == 100)
+	{
+		std::cout << "They two image are " << percentage << "% equal." << std::endl;
+	}
+	else
+	{
+		std::cout << "They two image are " << percentage << "% equal. With "<< decimilarPixelCount <<"/"<<image1size<<" pixels the same." << std::endl;
+	}
 	return 0;
 }
 
